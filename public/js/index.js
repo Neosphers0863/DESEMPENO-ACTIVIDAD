@@ -1,43 +1,49 @@
-// Almacen //
 
 var producto
 var cantidad
 var precio
 
-var productoCliente
+var ProductoCliente
 var cantidadCliente
 
-var repetir = true
-var Ingresando = true
+var ingresarProducto = true
+var ingresarCompra = true
+var verInventario = true
 
-var repetirInventario = true
-
-function ingresarProductoInventario() {
-    while (Ingresando) {
-        producto = prompt("Estos son los productos en mi inventario, escribe 'Salir' para acabar.")
-        if (producto === 'Salir') {
-            Ingresando = false
+while (ingresarProducto) {
+    var opcion = Number(prompt("Inventario: \n1 - Producto\n2 - Cantidad\n3 - Precios\n4 - Salir"))
+    switch (opcion) {
+        case 1:
+            agregarProducto()
             break
-        }
-
-        cantidad = Number(prompt("Disponibles: "))
-        precio = Number(prompt("Precio: "))
-
-        agregarProductos(producto, cantidad, precio)
+        case 2:
+            agregarCantidad()
+            break
+        case 3:
+            agregarPrecio()
+            break
+        case 4:
+            ingresarProducto = false
     }
 }
 
-ingresarProductoInventario()
-
-function agregarProductos(producto, cantidad, precio) {
-    console.log("Inventario: ")
-    console.log("Producto: ", producto)
-    console.log("Cantidad: ", cantidad)
-    console.log("Precio: ", precio)
+function agregarProducto() {
+    producto = prompt("Ingresa un producto")
+    console.log("Producto agregado: " + producto);
 }
 
-while (repetir) {
-    var opcion = Number(prompt("Bienvenido que desea comprar: \n1 - Producto que desea\n2 - Cantidad\n3 - Salir"))
+function agregarCantidad() {
+    cantidad = Number(prompt("Ingresa cantidad disponible"))
+    console.log("Disponibles: " + cantidad);
+}
+
+function agregarPrecio() {
+    precio = Number(prompt("Ingresa el precio unitario del producto"))
+    console.log("Precio del producto: " + precio);
+}
+
+while (ingresarCompra) {
+    var opcion = Number(prompt("Bienvenido que desea comprar: \n1 - Producto desea\n2 - Cantidad\n3 - Salir"))
     switch (opcion) {
         case 1:
             compraProductoCliente()
@@ -46,50 +52,46 @@ while (repetir) {
             cantidadProductoCliente()
             break
         case 3:
-            repetir = false
+            ingresarCompra = false
             break
     }
 }
 
-
 function compraProductoCliente() {
-    productoCliente = prompt("Que producto desea comprar: ")
-    if (producto == productoCliente) {
-        console.log("Seleccionaste: " + producto)
+    ProductoCliente = prompt("Que producto desea comprar: ")
+    if (producto == ProductoCliente) {
+        console.log("Seleccionaste: " + producto);
     } else {
-        console.log("Ese articulo no existe en nuestro inventario")
+        console.log("Ese producto no existe en nuestro inventario");
     }
 }
 
 function cantidadProductoCliente() {
     cantidadCliente = Number(prompt("Que cantidad desea comprar: "))
-    console.log("Seleccionaste: " + cantidadCliente)
+    console.log("Seleccionaste: " + cantidadCliente);
     if (cantidadCliente >= 10 && cantidadCliente <= 19) {
-        console.log("Felicidaes tienes un 10 % de descuento en tu compra !!")
+        console.log("Felicidades tienes un 10 % de descuento en tu compra !!");
     } else if (cantidadCliente >= 20) {
-        console.log("Felicidades tienes un 20 % de descuento en tu compra !! ")
+        console.log("Felicidades tienes un 20 % de descuento en tu compra !!");
     }
 }
 
-
-while (repetirInventario) {
+while (verInventario) {
     var opcion = Number(prompt("Desea ver el inventario actual? : \n1 - Si\n2 - No"))
     switch (opcion) {
         case 1:
             inventarioActual()
             break
         case 2:
-            repetirInventario = false
+            verInventario = false
             break
     }
 }
 
-function inventarioActual() {
+function inventarioActual (){
     cantidad -= cantidadCliente
-    console.log("Queda esta cantidad de articulos en nuestro inventario: " + cantidad)
+    console.log("Queda esta cantidad de productos en nuestro inventario: " + cantidad)
 }
-
-
 
 
 
